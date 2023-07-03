@@ -1,21 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
+import { Sidelink } from "./components/Sidelink";
+import { SideChat } from "./components/SideChat";
 
 export default function Chat() {
   const [ws, setWs] = useState(null);
 
   useEffect(() => {
-    const ws = new WebSocket('ws://localhost:4040');
+    const ws = new WebSocket("ws://localhost:4040");
     setWs(ws);
-    ws.addEventListener('message', handleMessage);
+    ws.addEventListener("message", handleMessage);
   }, []);
 
   function handleMessage(e) {
-    console.log('new message ', e);
+    console.log("new message ", e);
   }
   return (
     <div className="flex h-screen">
-      <div className="bg-gray-700 w-1/3 text-gray-300 "> Chats</div>
-      <div className=" flex flex-col bg-slate-900 w-2/3 p-2">
+      <Sidelink />
+      <SideChat />
+      <div className=" flex flex-col bg-slate-200 w-full p-2">
         <div className="flex-grow text-gray-300">Peoples</div>
 
         <div className="flex gap-2 mx-2">
@@ -24,14 +27,15 @@ export default function Chat() {
             className="bg-white flex-grow border p-2 rounded-md h-auto"
             placeholder="type a message ..."
           />
-          <button className="bg-slate-900 text-gray-300">
+          <button className=" text-gray-600">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6">
+              className="w-4 h-6"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
