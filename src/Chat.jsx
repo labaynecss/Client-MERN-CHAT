@@ -23,7 +23,11 @@ export default function Chat() {
 
   function handleMessage(ev) {
     const messageData = JSON.parse(ev.data);
+<<<<<<< HEAD
     if ('online' in messageData) {
+=======
+    if ("online" in messageData) {
+>>>>>>> ccd2dd632211e5adb19caf1aef8f1fa8d3b21d60
       showOnlinePeople(messageData.online);
     }
   }
