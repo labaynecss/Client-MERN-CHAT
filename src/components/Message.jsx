@@ -1,7 +1,7 @@
 export default function Message() {
   return (
     <>
-      <div className=" absolute left-[300px] flex flex-col bg-blue-50 h-[500px] w-[1000px] p-2 mt-24 rounded-lg">
+      <div className=" absolute left-[300px] flex flex-col bg-blue-50 h-[555px] w-[1050px] p-2 mt-24 rounded-lg">
         <div className="flex-grow -top-8 relative text-gray-700"></div>
         <div className="flex gap-2 mx-2">
           <input
@@ -16,7 +16,8 @@ export default function Message() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-full h-6 rounded-full bg-red-200">
+              className="w-full h-6 rounded-full bg-red-200"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
