@@ -30,7 +30,7 @@ export default function Chat() {
   }
 
   return (
-    <div className="flex h-screen max-w-full bg-gray-200">
+    <div className="flex h-screen max-w-full bg-[#1b1b1b]">
       <Navbar />
       <Sidelink />
       <SideChat />
