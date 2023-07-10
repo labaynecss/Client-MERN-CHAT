@@ -1,26 +1,20 @@
-import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
-import SettingsIcon from '@mui/icons-material/Settings';
-import BookmarkIcon from '@mui/icons-material/Bookmark';
-import PeopleIcon from '@mui/icons-material/People';
+import ChatOutlinedIcon from '@mui/icons-material/ChatOutlined';
+import Person4OutlinedIcon from '@mui/icons-material/Person4Outlined';
+import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined';
 
 export const data = [
   {
-    icon: <MarkEmailUnreadIcon className="text-white text-lg" />,
+    icon: <ChatOutlinedIcon className="text-white text-sm" />,
 
     path: '*',
   },
   {
-    icon: <BookmarkIcon className="text-white text-lg" />,
+    icon: <Person4OutlinedIcon className="text-white text-md" />,
 
     path: '/',
   },
   {
-    icon: <PeopleIcon className="text-white text-lg" />,
-
-    path: '*',
-  },
-  {
-    icon: <SettingsIcon className="text-white text-lg" />,
+    icon: <StarOutlineOutlinedIcon className="text-white text-sm" />,
 
     path: '*',
   },

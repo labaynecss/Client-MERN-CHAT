@@ -1,3 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior: smooth;
+  /* color-scheme: dark; */
+  font-family: teko;
+  /* outline: 1px solid red; */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ffa31a;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 5px;
+}
+
+body {
+  overflow-x: hidden;
+}
