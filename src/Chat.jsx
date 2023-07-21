@@ -1,5 +1,4 @@
 import { useContext, useEffect, useRef, useState } from "react";
-
 import { SideChat } from "./components/SideChat";
 import Message from "./components/Message";
 import Navbar from "./components/Navbar";
@@ -22,7 +21,7 @@ export default function Chat() {
   }, []);
 
   function connectToWs() {
-    const ws = new WebSocket("wss://mern-chat-three.vercel.app/");
+    const ws = new WebSocket("wss://https://cloudy-lion-sneakers.cyclic.app");
     setWs(ws);
     ws.addEventListener("message", handleMessage);
     ws.addEventListener("close", () => {
