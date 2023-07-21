@@ -1,11 +1,11 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from "react";
 
-import { SideChat } from './components/SideChat';
-import Message from './components/Message';
-import Navbar from './components/Navbar';
-import { UserContext } from './UserContext';
-import { filter, uniqBy } from 'lodash';
-import axios from 'axios';
+import { SideChat } from "./components/SideChat";
+import Message from "./components/Message";
+import Navbar from "./components/Navbar";
+import { UserContext } from "./UserContext";
+import { filter, uniqBy } from "lodash";
+import axios from "axios";
 
 export default function Chat() {
   const [ws, setWs] = useState(null);
@@ -13,7 +13,7 @@ export default function Chat() {
   const [offlinePeople, setOfflinePeople] = useState({});
   const [selectedUserId, setSelectedUserId] = useState(null);
   const { username, id, setId, setUsername } = useContext(UserContext);
-  const [newMessageText, setNewMessageText] = useState('');
+  const [newMessageText, setNewMessageText] = useState("");
   const [messages, setMessages] = useState([]);
   const divUnderMessages = useRef();
 
@@ -22,12 +22,12 @@ export default function Chat() {
   }, []);
 
   function connectToWs() {
-    const ws = new WebSocket('ws://localhost:4040');
+    const ws = new WebSocket("ws:https://mern-chat-three.vercel.app");
     setWs(ws);
-    ws.addEventListener('message', handleMessage);
-    ws.addEventListener('close', () => {
+    ws.addEventListener("message", handleMessage);
+    ws.addEventListener("close", () => {
       setTimeout(() => {
-        console.log('Disconnected. Trying to reconnect.');
+        console.log("Disconnected. Trying to reconnect.");
         connectToWs();
       }, 1000);
     });
@@ -44,7 +44,7 @@ export default function Chat() {
     const messageData = JSON.parse(ev.data);
     console.log({ ev, messageData });
 
-    if ('online' in messageData) {
+    if ("online" in messageData) {
       showOnlinePeople(messageData.online);
     } else {
       setMessages((prev) => [
@@ -55,7 +55,7 @@ export default function Chat() {
   }
 
   function logout() {
-    axios.post('/logout').then(() => {
+    axios.post("/logout").then(() => {
       setId(null), setUsername(null);
     });
   }
@@ -64,9 +64,9 @@ export default function Chat() {
     const messageData = JSON.parse(ev.data);
     console.log({ ev, messageData });
 
-    if ('online' in messageData) {
+    if ("online" in messageData) {
       showOnlinePeople(messageData.online);
-    } else if ('text' in messageData) {
+    } else if ("text" in messageData) {
       setMessages((prev) => [...prev, { ...messageData }]);
     }
   }
@@ -77,10 +77,10 @@ export default function Chat() {
       JSON.stringify({
         recipient: selectedUserId,
         text: newMessageText,
-      }),
+      })
     );
-    setNewMessageText('');
-    console.log('Message sent');
+    setNewMessageText("");
+    console.log("Message sent");
     setMessages((prev) => [
       ...prev,
       {
@@ -95,13 +95,13 @@ export default function Chat() {
   useEffect(() => {
     if (selectedUserId) {
       axios
-        .get('/messages/' + selectedUserId)
+        .get("/messages/" + selectedUserId)
         .then((res) => {
           setMessages(res.data);
         })
         .catch((error) => {
           // Handle any error that occurred during the request
-          console.error('Error fetching messages:', error);
+          console.error("Error fetching messages:", error);
         });
     }
   }, [selectedUserId]);
@@ -110,12 +110,12 @@ export default function Chat() {
     const div = divUnderMessages.current;
 
     if (div) {
-      div.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      div.scrollIntoView({ behavior: "smooth", block: "end" });
     }
   }, [messages]);
 
   useEffect(() => {
-    axios.get('/people').then((res) => {
+    axios.get("/people").then((res) => {
       const offlinePeopleArr = res.data
         .filter((p) => p._id !== id)
         .filter((p) => !Object.keys(onlinePeople).includes(p._id));
@@ -130,7 +130,7 @@ export default function Chat() {
   const onlinePeopleExclourUser = { ...onlinePeople };
   delete onlinePeopleExclourUser[id];
 
-  const messagesWithoutDupes = uniqBy(messages, '_id');
+  const messagesWithoutDupes = uniqBy(messages, "_id");
 
   return (
     <div className="flex flex-col h-screen max-w-full bg-[#151515]">
